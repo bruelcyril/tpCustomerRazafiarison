@@ -17,26 +17,33 @@ import java.util.List;
  * @author bruel
  */
 /**
- * Backing bean de la page customerList.xhtml.
+ * Backing bean pour la page CustomerList.
  */
-@Named(value = "customerBean")  
-@ViewScoped  
-public class CustomerBean implements Serializable {  
-  private List<Customer> customerList;  
+@Named(value = "customerBean")
+@ViewScoped
+public class CustomerBean implements Serializable {
 
-  @EJB
-  private CustomerManager customerManager;  
-        
-  public CustomerBean() {  }  
-        
-  /** 
-   * Retourne la liste des clients pour affichage dans une DataTable.
-     * @return 
-   */  
-  public List<Customer> getCustomers() {
-    if (customerList == null) {
-      customerList = customerManager.getAllCustomers();
+    private List<Customer> customers;
+
+    @EJB
+    private CustomerManager customerManager;
+
+    /**
+     * Creates a new instance of CustomerMBean
+     */
+    public CustomerBean() {
     }
-    return customerList;
-  }  
+
+    /**
+     * Renvoie la liste des clients pour affichage dans une DataTable
+     *
+     * @return
+     */
+    public List<Customer> getCustomers() {
+        if (customers == null) {
+            customers = customerManager.getAllCustomers();
+        }
+        return customers;
+    }
+
 }
